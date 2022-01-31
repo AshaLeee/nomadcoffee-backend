@@ -20,7 +20,7 @@ export const getUser = async(token) => {
     }
 };
 
-// export const protectdResolver = (ourResolver) => (
+// export const protectedResolver = (ourResolver) => (
 //     root, args, context, info
 //     ) => {
 //     if(!context.loggedInuser) {
@@ -32,7 +32,7 @@ export const getUser = async(token) => {
 //     return ourResolver(root, args, context, info);
 // };
 
-export function protectdResolver(ourResolver) {
+export function protectedResolver(ourResolver) {
     return function (root, args, context, info) {
         if(!context.loggedInuser) {
             return {

@@ -7,8 +7,6 @@ export default {
                 username,
                 email,
                 name,
-                githubUsername,
-                avatarURL,
                 password,
             }) => {
             try{
@@ -33,8 +31,6 @@ export default {
                         username,
                         email,
                         name,
-                        githubUsername,
-                        avatarURL,
                         password:uglyPassword,
                     },
                 });
