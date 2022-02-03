@@ -22,55 +22,39 @@ model User {
   githubUsername String?
   followers      User[]       @relation("FollowRelation", references: [id])
   following      User[]       @relation("FollowRelation", references: [id])
-  photos    Photo[]
+  coffeeShops    CoffeeShop[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 }
 
-// model CoffeeShopPhoto {
-//   id           Int        @id @default(autoincrement())
-//   url          String
-//   shop         CoffeeShop @relation(fields: [coffeeShopId], references: [id])
-//   coffeeShopId Int
-// }
-
-// model CoffeeShop {
-//   id         Int               @id @default(autoincrement())
-//   user       User              @relation(fields: [userId], references: [id])
-//   userId     Int
-//   name       String
-//   latitude   String?
-//   longitude  String?
-//   caption    String
-//   photos     CoffeeShopPhoto[]
-//   categories Category[]
-//   createdAt  DateTime          @default(now())
-//   updatedAt  DateTime          @updatedAt
-// }
-
-// model Category {
-//   id         Int          @id @default(autoincrement())
-//   name       String       @unique
-//   slug       String?
-//   shops      CoffeeShop[]
-//   totalShops Int
-// }
-
-model Photo {
-  id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int       @unique
-  url       String
-  caption   String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  hashtags  Hashtag[]
+model CoffeeShopPhoto {
+  id           Int        @id @default(autoincrement())
+  url          String
+  coffeeShop   CoffeeShop @relation(fields: [coffeeShopId], references: [id])
+  coffeeShopId Int
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
 }
 
-model Hashtag {
-  id          Int          @id @default(autoincrement())
-  hashtag     String       @unique
-  photos Photo[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+model CoffeeShop {
+  id         Int               @id @default(autoincrement())
+  name       String
+  latitude   String?
+  longitude  String?
+  user       User              @relation(fields: [userId], references: [id])
+  userId     Int
+  photos     CoffeeShopPhoto[]
+  categories Category[]
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+}
+
+model Category {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  slug       String
+  coffeeShops      CoffeeShop[]
+  totalShops Int
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
 }

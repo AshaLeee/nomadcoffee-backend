@@ -42,5 +42,10 @@ export default {
            
             return Boolean(exist);
         },
+        coffeeShops: ({ id }) => client.user.findUnique({
+            where: {
+                id,
+            },
+        }).coffeeShops(),
     },
 };
