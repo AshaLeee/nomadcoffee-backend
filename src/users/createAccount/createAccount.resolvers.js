@@ -23,7 +23,10 @@ export default {
                     },
                 });
                 if(exitingUser){
-                    return false;
+                    return {
+                        ok: false,
+                        error: "already exitingUser.",
+                    };
                 }
                 const uglyPassword = await bcrypt.hash(password, 10);
                 const createdUser = await client.user.create({
@@ -40,15 +43,15 @@ export default {
                         token,
                     };
                }else{
-                    return {
-                        ok: false,
-                        error: "Fail to create user.",
-                    }
+                return {
+                    ok: false,
+                    error: "Fail to create user.",
+                }
                }
             }catch (e){
                 return {
                     ok: false,
-                    error: "Fail to create user.",
+                    error: "Fail to create user with e",
                 }
             }
         },
