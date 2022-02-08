@@ -40,7 +40,6 @@ export default {
                if(createdUser.id){
                     return {
                         ok: true,
-                        token,
                     };
                }else{
                 return {
