@@ -51,7 +51,7 @@ export default {
             }catch (e){
                 return {
                     ok: false,
-                    error: "Fail to create user with e",
+                    error: e,
                 }
             }
         },
