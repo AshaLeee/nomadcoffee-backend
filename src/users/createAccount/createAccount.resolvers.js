@@ -25,8 +25,8 @@ export default {
                 if(exitingUser){
                     return false;
                 }
-            const uglyPassword = await bcrypt.hash(password, 10);
-              const createdUser = await client.user.create({
+                const uglyPassword = await bcrypt.hash(password, 10);
+                const createdUser = await client.user.create({
                     data: {
                         username,
                         email,
@@ -35,12 +35,21 @@ export default {
                     },
                 });
                if(createdUser.id){
-                    return true;
+                    return {
+                        ok: true,
+                        token,
+                    };
                }else{
-                   return false;
+                    return {
+                        ok: false,
+                        error: "Fail to create user.",
+                    }
                }
             }catch (e){
-                return true;
+                return {
+                    ok: false,
+                    error: "Fail to create user.",
+                }
             }
         },
     },
